@@ -25,9 +25,18 @@
 *      MicroSD:    Genérico.                                                 *
 *                                                                            *
 **************************/
-  
+
+#include "RTC.h"
+
+RTCDS RTC;
 
 /*Componentes de la microSD*/
+#include "DHT.h"
+
+#define DHTPIN 16   
+#define DHTTYPE DHT11 
+
+DHT dht(DHTPIN, DHTTYPE);
 
 #define MICROSD_PIN 5 //Pin de control de la SD
 
@@ -35,7 +44,7 @@
 #include <SD.h> //Libreria de gestion de la MICRO SD
 
 File MICROSD_FILE;
-
+#define EXTENCION ".json"
 #include "MicroSD.h"
 MicroSD MSD; //Instancia de la clase microSD
 

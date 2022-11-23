@@ -19,7 +19,7 @@ class Task {
 void Task :: task_2s (void) {
 
   if(currentMillis - time_2s >= _2){
-    Serial.println("Esta es la tarea de 2 segundos");
+    //Serial.println("Esta es la tarea de 2 segundos");
     //Aqui se deberia pegar un sensor
     time_2s = currentMillis;
 
@@ -49,11 +49,11 @@ void Task :: task_2s (void) {
 
 void Task :: task_5s (void) {
     if(currentMillis - time_5s >= _5){
-    Serial.println("Esta es la tarea de 5 segundos");
+    //Serial.println("Esta es la tarea de 5 segundos");
     //Aqui se deberia pegar un sensor
     time_5s = currentMillis;
 
-    int light = analogRead(4);
+    int light = analogRead(4) / 4;
 
     Serial.print("Reading = ");
     Serial.print(light); //lecturas analogicas
@@ -73,26 +73,11 @@ void Task :: task_5s (void) {
 }
 
 void Task :: task_10s (void) {
-    if(currentMillis - time_10s >= _10){
-    Serial.println("Esta es la tarea de 10 segundos");
-    //Aqui se deberia pegar un sensor
-    time_10s = currentMillis;
+    dht.begin();
+    
+    float t = dht.readTemperature();
 
-    #include <dht.h>
-    dht DHT;
-    #define DHT11_PIN 16
-
-    DHT.read11(DHT11_PIN);
-  
-    //TEMPERATURA//
-    Serial.print("Temperatura = ");
-    Serial.print(DHT.temperature);
-    Serial.println(" C");
-  /*
-    //HUMEDAD RELATIVA//
-    Serial.print("Humedad = ");
-    Serial.print(DHT.humidity);
-    Serial.println(" %");
-    */
-
+      Serial.print(F("Temperature: "));
+      Serial.print(t);
+      Serial.println(F("°C "));
 }

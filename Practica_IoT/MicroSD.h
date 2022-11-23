@@ -4,7 +4,8 @@ class MicroSD {
     
   public:
     void MicroSD_init(void);
-    void MicroSD_save(void);    
+    void MicroSD_save(void);
+    void FileID(void);    
     
 };
  
@@ -20,6 +21,7 @@ class MicroSD {
  }
 
  void MicroSD :: MicroSD_save (void) {
+  FileID();
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
   MICROSD_FILE = SD.open(filename, FILE_APPEND);
@@ -37,4 +39,12 @@ class MicroSD {
     Serial.println(F ("Error consigue un ingeniero"));
     
   }
+ }
+
+ void MicroSD :: FileID (void){
+   filename = "/";
+   RTC.get_time ();
+   RTC.format_date('-');
+   filename += RTC._date;
+   filename += EXTENCION;
  }
