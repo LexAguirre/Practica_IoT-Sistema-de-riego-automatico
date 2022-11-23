@@ -73,6 +73,7 @@ void Task :: task_5s (void) {
 }
 
 void Task :: task_10s (void) {
+  
     dht.begin();
     
     float t = dht.readTemperature();

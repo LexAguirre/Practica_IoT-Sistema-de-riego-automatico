@@ -25,6 +25,13 @@
 *      MicroSD:    Genérico.                                                 *
 *                                                                            *
 **************************/
+#include <WiFi.h>
+  WiFiClient ESP32_WIFI;
+#include <PubSubClient.h>
+PubSubClient client (ESP32_WIFI);
+
+#include "MQTT.h"
+MQTT_ESP32 MQTT;
 
 #include "RTC.h"
 

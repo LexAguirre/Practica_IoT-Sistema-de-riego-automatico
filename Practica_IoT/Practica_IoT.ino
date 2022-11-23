@@ -2,8 +2,10 @@
 
 void setup() {
   // put your setup code here, to run once:
-  MSD.MicroSD_init();
-  RTC.init_ds1307();
+  //MSD.MicroSD_init();
+  //RTC.init_ds1307();
+  MQTT.MQTT_setup_WIFI();
+  MQTT.MQTT_setserver();
   Serial.begin(115200);
   }
 
