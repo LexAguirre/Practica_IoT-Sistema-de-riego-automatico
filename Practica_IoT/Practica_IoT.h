@@ -25,19 +25,15 @@
 *      MicroSD:    Genérico.                                                 *
 *                                                                            *
 **************************/
-#include <WiFi.h>
-  WiFiClient ESP32_WIFI;
-#include <PubSubClient.h>
-PubSubClient client (ESP32_WIFI);
+//LCD---------------------------------------------
+#include <LiquidCrystal_I2C.h>
 
-#include "MQTT.h"
-MQTT_ESP32 MQTT;
+LiquidCrystal_I2C lcd(0x27,16,2);
+#include "LCD.h"
+LCD_ESP32 LCD;
 
-#include "RTC.h"
 
-RTCDS RTC;
-
-/*Componentes de la microSD*/
+//Sensores DHT11-----------------------------------
 #include "DHT.h"
 
 #define DHTPIN 16   
@@ -45,15 +41,44 @@ RTCDS RTC;
 
 DHT dht(DHTPIN, DHTTYPE);
 
+//Ejecutador de los sensores-----------------------
+#include "Sensores.h"
+Sensores_ESP32 Sensores;
+
+//Ejecutador de los actuadores---------------------
+#include "Actuadores.h"
+Actuadores_ESP32 Actuadores;
+
+//Reloj--------------------------------------------
+#include "RTC.h"
+RTCDS RTC;
+
+//Componentes de la microSD------------------------
 #define MICROSD_PIN 5 //Pin de control de la SD
 
 #include <SPI.h> //Protocolo de cominicacion SPI
 #include <SD.h> //Libreria de gestion de la MICRO SD
 
 File MICROSD_FILE;
-#define EXTENCION ".json"
+#define EXTENSION ".json"
+
+#include "JSON.h"
+ mi_json JSON;
+ 
 #include "MicroSD.h"
 MicroSD MSD; //Instancia de la clase microSD
 
+//MQTT--------------------------------------------
+
+#include <WiFi.h>
+  WiFiClient ESP32_WIFI;
+ 
+#include <PubSubClient.h>
+PubSubClient client (ESP32_WIFI);
+
+#include "MQTT.h"
+MQTT_ESP32 MQTT;
+
+//Tareas--------------------------------------------
 #include "Task.h"
 Task tsk;

@@ -1,6 +1,6 @@
 class MicroSD {
   public:
-    String filename = "/panpizza.txt";
+    String filename = "";
     
   public:
     void MicroSD_init(void);
@@ -13,7 +13,7 @@ class MicroSD {
 
   while(!SD.begin(MICROSD_PIN)){
     //Vierificar si ya esta funcionando
-    Serial.println( F ("Error rn la detección de la memoria, revisar conexion"));
+    Serial.println( F ("Error en la detección de la memoria, revisar conexion"));
     delay(2000);
   }
   Serial.println(F ("Se ha detectado exitosamente el modulo SD"));
@@ -46,5 +46,5 @@ class MicroSD {
    RTC.get_time ();
    RTC.format_date('-');
    filename += RTC._date;
-   filename += EXTENCION;
+   filename += EXTENSION;
  }
