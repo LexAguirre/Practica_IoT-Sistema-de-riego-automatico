@@ -1,5 +1,5 @@
-const char* AP_NAME = "IOT5";
-const char* AP_PWD = "12345678";
+const char* AP_NAME = "LexMifi";//IOT5
+const char* AP_PWD = "password";//12345678
 const char* MQTT_SERVER = "test.mosquitto.org";
 const char* MQTT_CLIENT = "IOT5";
 #define MQTT_PORT 1883

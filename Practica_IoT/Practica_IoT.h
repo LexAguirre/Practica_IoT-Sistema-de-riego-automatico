@@ -25,13 +25,19 @@
 *      MicroSD:    Genérico.                                                 *
 *                                                                            *
 **************************/
+//Reloj--------------------------------------------
+#include "RTC.h"
+RTCDS RTC;
+
+//Buzzer------------------------------------------
+//buzzer_ESP32.SongBuz()
+
 //LCD---------------------------------------------
 #include <LiquidCrystal_I2C.h>
 
 LiquidCrystal_I2C lcd(0x27,16,2);
 #include "LCD.h"
 LCD_ESP32 LCD;
-
 
 //Sensores DHT11-----------------------------------
 #include "DHT.h"
@@ -49,9 +55,7 @@ Sensores_ESP32 Sensores;
 #include "Actuadores.h"
 Actuadores_ESP32 Actuadores;
 
-//Reloj--------------------------------------------
-#include "RTC.h"
-RTCDS RTC;
+
 
 //Componentes de la microSD------------------------
 #define MICROSD_PIN 5 //Pin de control de la SD

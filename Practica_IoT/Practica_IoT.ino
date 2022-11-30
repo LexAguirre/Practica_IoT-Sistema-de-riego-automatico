@@ -2,10 +2,10 @@
 
 void setup() {
   
-  /*MSD.MicroSD_init();
+  MSD.MicroSD_init();
   RTC.init_ds1307();
   MQTT.MQTT_setup_WIFI();
-  MQTT.MQTT_setserver();*/
+  MQTT.MQTT_setserver();
   Serial.begin(115200);
   }
 
@@ -15,7 +15,6 @@ void loop() {
   tsk.task_2s ();//Poner los tres sensores en estos
   tsk.task_5s ();
   tsk.task_10s ();
-  tsk.task_12s ();
   delay( 2000 );
-  //MSD.MicroSD_save(); 
+  MSD.MicroSD_save(); 
   }

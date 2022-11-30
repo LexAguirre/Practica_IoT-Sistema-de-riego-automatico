@@ -5,7 +5,8 @@ class Sensores_ESP32 {
     int humidityPor = 0;
     int light = 0;
     int lightPor = 0;
-    int temp = 0;
+    float temp = 0;
+
 
    public:
     
@@ -16,7 +17,7 @@ class Sensores_ESP32 {
 
 void Sensores_ESP32 :: Humedad (void) {
 
-    humidity = analogRead(2) / 4;
+    humidity = analogRead(15) / 4;
     
     if (humidity >= 512){
       humidityPor = 50 - ((((humidity - 511.5) * 100) / 511.5) / 2);
@@ -38,6 +39,5 @@ void Sensores_ESP32 :: Luz (void) {
 
 void Sensores_ESP32 :: Temperatura (void) {
       dht.begin();
-    
-      int temp = dht.readTemperature();
+      temp = dht.readTemperature();
   }

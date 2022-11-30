@@ -193,10 +193,10 @@ int divider = 0, noteDuration = 0;
 
 class buzzer_ESP32 {
   public:
-  void buzzer (void);
+  void SongBuz (void);
   };
 
-  void buzzer_ESP32 :: buzzer (void) {
+  void buzzer_ESP32 :: SongBuz (void) {
       // iterate over the notes of the melody.
   // Remember, the array is twice the number of notes (notes + durations)
   for (int thisNote = 0; thisNote < notes * 2; thisNote = thisNote + 2) {
