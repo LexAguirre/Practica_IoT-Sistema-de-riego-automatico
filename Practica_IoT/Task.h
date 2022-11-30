@@ -12,16 +12,23 @@ class Task {
                 time_10s = 0;
   
   public:
-    void task_1s (void);
+    void PruebaValores (void);
     void task_2s (void);
-    void task_5s (void);
-    void task_10s (void);
+    void Actu (void);
+    void HumTemp (void);
 };
 
-void Task :: task_1s (void) {
+void Task :: PruebaValores (void) {
   if(currentMillis - time_1s >= _1){
+    //RTC.get_time();
     LCD.LCD32(Sensores.humidityPor, Sensores.lightPor, Sensores.temp);
 
+    Serial.print("hum ");
+    Serial.println(Sensores.humidity);
+    Serial.print("luz ");
+    Serial.println(Sensores.light);
+    Serial.print("Temp ");
+    Serial.println(Sensores.temp);
     time_1s = currentMillis;
 
     
@@ -38,17 +45,20 @@ void Task :: task_2s (void) {
   }
 }
 
-void Task :: task_5s (void) {
+void Task :: Actu (void) {
     if(currentMillis - time_5s >= _5){
 
     if(Sensores.lightPor >= 95){
       Actuadores.Buzzer();
     }
 
-    if(Sensores.temp >= 24){
-      Actuadores.Ventilador(1);
+    if(Sensores.temp >= 20){
+      Serial.println(Sensores.temp >= 20);
+       Actuadores.Ventilador(0);
+       Serial.print("Activando papu");
     } else {
-      Actuadores.Ventilador(0);
+      Actuadores.Ventilador(1);
+      Serial.print("Desactivando defensa");
     }
 
     if(Sensores.humidityPor <= 25){
@@ -56,16 +66,16 @@ void Task :: task_5s (void) {
       delay(2000);
       Actuadores.Bomba(0);
     }
+    
     Sensores.Luz();
-    // MQTT.MQTT_reconnect (  );
+    //MQTT.MQTT_reconnect (  );
           
-    //Serial.println("Esta es la tarea de 5 segundos");
     time_5s = currentMillis;
     
   }
 }
 
-void Task :: task_10s (void) {
+void Task :: HumTemp (void) {
   if(currentMillis - time_10s >= _10){
     Sensores.Humedad();
     Sensores.Temperatura();

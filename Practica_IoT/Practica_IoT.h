@@ -55,8 +55,6 @@ Sensores_ESP32 Sensores;
 #include "Actuadores.h"
 Actuadores_ESP32 Actuadores;
 
-
-
 //Componentes de la microSD------------------------
 #define MICROSD_PIN 5 //Pin de control de la SD
 
